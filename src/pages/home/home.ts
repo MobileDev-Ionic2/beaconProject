@@ -11,16 +11,16 @@ import { EstimoteBeacons } from '@ionic-native/estimote-beacons';
 export class HomePage {
 
   constructor(public navCtrl: NavController, public beacon: EstimoteBeacons ) {
-    var region = {};
-    this.beacon.startSecureMonitoringForRegion(region, notifyEntryStateOnDisplay)
     
-   
+    this.beacon.startRangingBeaconsInRegion()
+    .subscribe(
+      val => { alert(JSON.stringify(val)) },
+      err => { alert(err) }
+    )  
   }
 
-  }
-
-
-
-  function onRangingSuccess(beaconInfo) {
-    alert('Number of beacons ranged ' + beaconInfo.beacons.length)
 }
+
+
+
+
